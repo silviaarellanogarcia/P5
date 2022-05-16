@@ -68,7 +68,7 @@ mediante búsqueda de los valores en una tabla.
 ### Síntesis FM.
 
 Construya un instrumento de síntesis FM, según las explicaciones contenidas en el enunciado y el artículo
-de [John M. Chowning](https://ccrma.stanford.edu/sites/default/files/user/jc/fm_synthesispaper-2.pdf). El
+de [John M. Chowning](https://web.eecs.umich.edu/~fessler/course/100/misc/chowning-73-tso.pdf). El
 instrumento usará como parámetros **básicos** los números `N1` y `N2`, y el índice de modulación `I`, que
 deberá venir expresado en semitonos.
 
