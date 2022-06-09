@@ -27,16 +27,35 @@ permitan visualizar el funcionamiento de la curva ADSR.
 
 * Un instrumento con una envolvente ADSR genérica, para el que se aprecie con claridad cada uno de sus
   parámetros: ataque (A), caída (D), mantenimiento (S) y liberación (R).
+
+  Se han escogido los siguientes valores: A = 0.02, D=0.1, S=0.4, R=0.1, N=40.
+
+  <img src="images/Envolvente_ASDR_1.png" width="640" align="center"> </br>
+
 * Un instrumento *percusivo*, como una guitarra o un piano, en el que el sonido tenga un ataque rápido, no
   haya mantenimiemto y el sonido se apague lentamente.
   - Para un instrumento de este tipo, tenemos dos situaciones posibles:
     * El intérprete mantiene la nota *pulsada* hasta su completa extinción.
+
+      Como no hay mantenimiento, el tiempo que antes se le dedicaba a esta fase, ahora ha pasado a ser parte de la fase de caída. Se han usado: A = 0.02, D=0.5, S=0, R=0.1, N=40.
+
+      <img src="images/Envolvente_ASDR_2.png" width="640" align="center"></br>
+
     * El intérprete da por finalizada la nota antes de su completa extinción, iniciándose una disminución
 	  abrupta del sonido hasta su finalización.
+
+    En este caso no hay mantenimiento ni extinción. Tal como indica el  enunciado, podemos ver que el sonido finaliza de manera abrupta una vez acabada la fase de caída. Se han usado: A = 0.02, D=0.6, S=0, R=0, N=40.
+
+      <img src="images/Envolvente_ASDR_3.png" width="640" align="center"></br>
+
   - Debera representar en esta memoria **ambos** posibles finales de la nota.
 * Un instrumento *plano*, como los de cuerdas frotadas (violines y semejantes) o algunos de viento. En
   ellos, el ataque es relativamente rápido hasta alcanzar el nivel de mantenimiento (sin sobrecarga), y la
   liberación también es bastante rápida.
+
+  En este caso no hay fase de caida. Se han usado: A=0.06, D=0, S=0.5, R=0.06, N=40;
+
+      <img src="images/Envolvente_ASDR_3.png" width="640" align="center"></br>
 
 Para los cuatro casos, deberá incluir una gráfica en la que se visualice claramente la curva ADSR. Deberá
 añadir la información necesaria para su correcta interpretación, aunque esa información puede reducirse a

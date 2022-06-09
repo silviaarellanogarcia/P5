@@ -17,6 +17,8 @@ namespace upc {
     //    cout << name << ": " << parameters << endl;
     if (name == "InstrumentDumb") {
       pInst = (Instrument *) new InstrumentDumb(parameters);
+    }if(name == "Seno"){
+      pInst = (Instrument *) new Seno(parameters);
     }
     return pInst;
   }
