@@ -19,6 +19,44 @@ ejercicios indicados.
 
 Ejercicios.
 -----------
+### Tarea 1
+Ejecute el script `midi2sco` con la opción `--help` para ver su modo de empleo, y úselo para
+convertir al formato score el fichero MIDI `samples/Hawaii5-0.mid`. Visualice el fichero
+para ver qué instrumentos participan en él. Analice el inicio de la partitura y determine
+cómo comienza la canción.
+
+Podemos observar que este fichero cuenta con 16 instrumentos (track: [1,16]), que pueden verse en la lista siguiente:
+```
+# // time:=0 track:1 text: ROLL                
+# // time:=0 track:2 text: KICK SN             
+# // time:=0 track:3 text: HAT                 
+# // time:=0 track:4 text: TYMP                
+# // time:=0 track:5 text: KICK 2              
+# // time:=0 track:6 text: SNARE 2             
+# // time:=0 track:7 text: TAMBORINE           
+# // time:=0 track:8 text: BASS                
+# // time:=0 track:9 text: GTR                 
+# // time:=0 track:10 text: BRASS               
+# // time:=0 track:11 text: HARD BRASS          
+# // time:=0 track:12 text: FLUTE 1             
+# // time:=0 track:13 text: FLUTE 2             
+# // time:=0 track:14 text: TROMBONES           
+# // time:=0 track:15 text: MORE BONES          
+# // time:=0 track:16 text: HARD BRASS 2  
+```
+
+También observamos que la canción empieza con una serie de efectos de ROLL, en los que se cambia la duración y la velocidad, pero se mantiene el valor `Note = 40`, que corresponde a la nota Mi<sub>2</sub> (82.41Hz). Se utiliza solamente este instrumento hasta el instante time:=1.53834 aproximadamente.
+```
+2	9	1	40	21
+25	8	1	40	64
+0	9	1	40	6
+20	8	1	40	64
+12	9	1	40	12
+29	8	1	40	64
+0	9	1	40	18
+20	8	1	40	64
+...
+```
 
 ### Envolvente ADSR.
 
@@ -67,9 +105,89 @@ Implemente el instrumento `Seno` tomando como modelo el `InstrumentDumb`. La se�
 mediante búsqueda de los valores en una tabla.
 
 - Incluya, a continuación, el código del fichero `seno.cpp` con los métodos de la clase Seno.
+
+  ```
+  Seno::Seno(const std::string &param) 
+  : adsr(SamplingRate, param) {
+    bActive = false;
+    x.resize(BSIZE);
+
+    KeyValue kv(param);
+    int N;
+
+    if (!kv.to_int("N",N))
+      N = 40; //default value
+    
+    //Create a tbl with one period of a sinusoidal wave
+    tbl.resize(N);
+    float phase = 0, istep = 0, step = 2 * M_PI /(float) N;
+    index = 0;
+    for (int i=0; i < N ; ++i) {
+      tbl[i] = sin(phase);
+      phase += step;
+    }
+  }
+
+  void Seno::command(long cmd, long note, long vel) {
+    if (cmd == 9) {		//'Key' pressed: attack begins
+      bActive = true;
+      adsr.start();
+      
+      f0 = pow(2, ((note - 69.) / 12.)) * 440.;
+      istep = 2 * M_PI * (f0 / SamplingRate);
+      index = 0;
+      A = vel / 127.; // Amplitud
+    }
+    else if (cmd == 8) {	//'Key' released: sustain ends, release begins
+      adsr.stop();
+    }
+    else if (cmd == 0) {	//Sound extinguished without waiting for release to end
+      adsr.end();
+    }
+  }
+
+  const vector<float> & Seno::synthesize() {
+    if (not adsr.active()) {
+      x.assign(x.size(), 0);
+      bActive = false;
+      return x;
+    }
+    else if (not bActive)
+      return x;
+
+    for (unsigned int i=0; i<x.size(); ++i) {
+      if (index == (int)index) {
+        x[i] = A*tbl[index];
+      } else {
+        int upper = (int)ceil(index);
+        int lower = (int)floor(index);
+        x[i] = A*((upper - index)*tbl[lower % tbl.size()] + (index - lower)*tbl[upper % tbl.size()]);
+      }
+      index += istep;
+      if (index >= tbl.size()) {
+        index -= tbl.size();
+      }
+    }
+  
+    adsr(x); //apply envelope to x and update internal status of ADSR
+
+    return x;
+  }
+  ```
 - Explique qué método se ha seguido para asignar un valor a la señal a partir de los contenidos en la tabla,
   e incluya una gráfica en la que se vean claramente (use pelotitas en lugar de líneas) los valores de la
   tabla y los de la señal generada.
+  **TODO explicar**
+
+  Se ha utilizado el método de la interpolación lineal, calculando el valor de la muestra como una combinación lineal entre los valores inmediatamente anterior y posterior al índice deseado, con pesos &alpha y 1 - &alpha, teniendo en cuenta la distancia a los valores anteriores y posteriores.
+
+  Podemos observar a continuación los valores obtenidos de la interpolación lineal a partir de la tabla dada:
+  ![seno table](images/seno_table.png)
+
+  A continuación se adjuntan dos gráficas donde se compara la señal resultante de utilizar el instrument `InstrumentDumb` con la resultante de utilizar el instrument `Seno`:
+  ![seno vs dumb all signal](images/dumb_vs_seno.png)
+  ![seno vs dumb zoom](images/dumb_vs_seno_zoom.png)
+
 - Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código
   del método `command()`.
 

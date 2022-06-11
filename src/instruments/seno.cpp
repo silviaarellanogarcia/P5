@@ -40,9 +40,9 @@ void Seno::command(long cmd, long note, long vel) {
     adsr.start();
     
     f0 = pow(2, ((note - 69.) / 12.)) * 440.; // Página 14, ecuación 3 del guión de prácticas
-    istep = (f0 / SamplingRate) * tbl.size();
+    istep = 2 * M_PI * (f0 / SamplingRate);
     index = 0;
-      A = vel / 127.; // Amplitud
+    A = vel / 127.; // Amplitud
   }
   else if (cmd == 8) {	//'Key' released: sustain ends, release begins
     adsr.stop();
@@ -64,15 +64,20 @@ const vector<float> & Seno::synthesize() {
 
   for (unsigned int i=0; i<x.size(); ++i) {
     // x[i] = A * tbl[index++]; // Sin interpolación. No se tienen en cuenta las muestras anteriores.
-
     // Los índices seguramente no sean valores enteros. Por lo tanto, hay que interpolar, teniendo  en cuenta la cercanía de las muestras de al lado.
-    if ((unsigned int)ceil(index) == tbl.size()){ // El último elemento, es un caso especial porque salta a la primera muestra
-      x[i] = A * (((1 - (index - floor(index))) * tbl[floor(index)]) + ((1 - (ceil(index) - index)) * tbl[0])); 
-    }else{
-      x[i] = A * (((1 - (index - floor(index))) * tbl[floor(index)]) + ((1 - (ceil(index) - index)) * tbl[ceil(index)]));
-    }
+    if (index == (int)index) {
+      x[i] = A*tbl[index];
+    } else {
+      int upper = (int)ceil(index);
+      int lower = (int)floor(index);
+      x[i] = A*((upper - index)*tbl[lower % tbl.size()] + (index - lower)*tbl[upper % tbl.size()]);
 
-    index = fmod(index + istep, tbl.size());
+      //cout << index << '\t' << upper << '\t' << lower << '\t' << A*tbl[upper % tbl.size()] << '\t' << A*tbl[lower % tbl.size()] << '\t' << x[i] << endl;
+    }
+    index += istep;
+    if (index >= tbl.size()) {
+      index -= tbl.size();
+    }
   }
   
   adsr(x); //apply envelope to x and update internal status of ADSR

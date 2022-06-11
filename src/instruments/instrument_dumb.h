@@ -10,7 +10,7 @@ namespace upc {
   class InstrumentDumb: public upc::Instrument {
     EnvelopeADSR adsr;
     unsigned int index;
-	float A;
+	  float A;
     std::vector<float> tbl;
   public:
     InstrumentDumb(const std::string &param = "");
