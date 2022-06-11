@@ -9,9 +9,9 @@
 namespace upc {
   class Seno: public upc::Instrument {
     EnvelopeADSR adsr;
-    unsigned int index, prev, next;
-    float f0, step, nota; //Uso de nota en lugar de note porque se utiliza en algún método y podría llevar a confusión.
-	float A;
+    unsigned int index;
+    float f0, step, istep;
+	    float A;
     std::vector<float> tbl;
   public:
     Seno(const std::string &param = "");

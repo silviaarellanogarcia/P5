@@ -43,8 +43,8 @@ permitan visualizar el funcionamiento de la curva ADSR.
 
     * El intérprete da por finalizada la nota antes de su completa extinción, iniciándose una disminución
 	  abrupta del sonido hasta su finalización.
-
-    En este caso no hay mantenimiento ni extinción. Tal como indica el  enunciado, podemos ver que el sonido finaliza de manera abrupta una vez acabada la fase de caída. Se han usado: A = 0.02, D=0.6, S=0, R=0, N=40.
+    
+      En este caso no hay mantenimiento ni extinción. Tal como indica el  enunciado, podemos ver que el sonido finaliza de manera abrupta una vez acabada la fase de caída. Se han usado: A = 0.02, D=0.6, S=0, R=0, N=40.
 
       <img src="images/Envolvente_ASDR_3.png" width="640" align="center"></br>
 
@@ -55,7 +55,7 @@ permitan visualizar el funcionamiento de la curva ADSR.
 
   En este caso no hay fase de caida. Se han usado: A=0.06, D=0, S=0.5, R=0.06, N=40;
 
-      <img src="images/Envolvente_ASDR_3.png" width="640" align="center"></br>
+  <img src="images/Envolvente_ASDR_4.png" width="640" align="center"></br>
 
 Para los cuatro casos, deberá incluir una gráfica en la que se visualice claramente la curva ADSR. Deberá
 añadir la información necesaria para su correcta interpretación, aunque esa información puede reducirse a
