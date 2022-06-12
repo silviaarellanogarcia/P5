@@ -106,7 +106,7 @@ mediante búsqueda de los valores en una tabla.
 
 - Incluya, a continuación, el código del fichero `seno.cpp` con los métodos de la clase Seno.
 
-  ```
+  ```c++
   Seno::Seno(const std::string &param) 
   : adsr(SamplingRate, param) {
     bActive = false;
@@ -178,7 +178,14 @@ mediante búsqueda de los valores en una tabla.
   e incluya una gráfica en la que se vean claramente (use pelotitas en lugar de líneas) los valores de la
   tabla y los de la señal generada.
 
-  Se ha utilizado el método de la interpolación lineal, calculando el valor de la muestra como una combinación lineal entre los valores inmediatamente anterior y posterior al índice deseado, con pesos α y 1 - α, teniendo en cuenta la distancia a los valores anteriores y posteriores.
+  Primero se calcula el valor de la frecuencia fundamental de la nota a partir de su valor en semitonos. Para ello se ha utilizado la siguiente fórmula: 
+    
+  ```c++
+  f0 = pow(2, ((note - 69.) / 12.)) * 440.;
+  ```
+  El siguiente paso es calcular el incremento del índice de la tabla, que variará dependiendo de la frecuencia fundamental y la de muestreo. Hay que tener en cuenta que es muy posible que el resultado no sea un número entero, por lo que posteriormente habrá que "tratarlo" para conseguir x[i].
+
+  Para calcular x[i] se ha utilizado el método de la interpolación lineal, calculando el valor de la muestra como una combinación lineal entre los valores inmediatamente anterior y posterior al índice deseado, con pesos α y 1 - α, teniendo en cuenta la distancia a los valores anteriores y posteriores.
 
   Podemos observar a continuación los valores obtenidos de la interpolación lineal a partir de la tabla dada:
   ![seno table](images/seno_table.png)
