@@ -203,6 +203,11 @@ mediante búsqueda de los valores en una tabla.
   sinusoidal. Deberá explicar detalladamente cómo se manifiestan los parámetros del efecto (frecuencia e
   índice de modulación) en la señal generada (se valorará que la explicación esté contenida en las propias
   gráficas, sin necesidad de *literatura*).
+
+  <img src="images/tremolo.png" width="640" align="center"> </br>
+
+  En la imagen se muestra el efecto del trémolo con diferentes profundidades de modulación (A) y frecuencias de modulación (fm). Este crea una envolvente en forma de sinusoidal alrededor de la señal original. Se aprecia sobre todo en la fase de mantenimiento. A mayor fm y mayor A, más perceptible es el efecto del trémolo.
+
 - Si ha generado algún efecto por su cuenta, explique en qué consiste, cómo lo ha implementado y qué
   resultado ha producido. Incluya, en el directorio `work/ejemplos`, los ficheros necesarios para apreciar
   el efecto, e indique, a continuación, la orden necesaria para generar los ficheros de audio usando el
