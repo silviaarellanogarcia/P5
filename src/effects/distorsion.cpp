@@ -21,8 +21,6 @@ Distorsion::Distorsion(const std::string &param) {
 
   if (!kv.to_float("T", T))
     T = 0.7; // Umbral a partir del que se recorta la señal.
-
-  inc_fase = 2 * M_PI * fm / SamplingRate;
 }
 
 void Distorsion::command(unsigned int comm) {

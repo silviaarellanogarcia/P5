@@ -224,6 +224,17 @@ mediante búsqueda de los valores en una tabla.
   el efecto, e indique, a continuación, la orden necesaria para generar los ficheros de audio usando el
   programa `synth`.
 
+  **DISTORSIÓN** </br>
+  La distorsión consiste en recortar la señal que supere un cierto umbral para provocar un efecto de que la señal está "rota". La orden necesaria para ejecutarlo es:
+  ```bash
+  synth -e effects.orc  instrumento.orc partitura.sco name_out.wav
+  ```
+  Se ha generado el archivo distorsion.wav, donde se aplica el efecto en la 3ª, 4ª y 5ª nota. A continuación se muestra el efecto de la distorsión con un umbral de 0.5, hecho que provoca una onda con los extremos cuadrados. A mayor umbral, más acusado será el efecto.
+  <img src="images/no_distorsion_vs_distorsion.png" width="640" align="center"> </br></br>
+  <img src="images/distorsion.png" width="640" align="center"> </br>
+
+
+
 ### Síntesis FM.
 
 Construya un instrumento de síntesis FM, según las explicaciones contenidas en el enunciado y el artículo
