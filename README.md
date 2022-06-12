@@ -177,9 +177,8 @@ mediante búsqueda de los valores en una tabla.
 - Explique qué método se ha seguido para asignar un valor a la señal a partir de los contenidos en la tabla,
   e incluya una gráfica en la que se vean claramente (use pelotitas en lugar de líneas) los valores de la
   tabla y los de la señal generada.
-  **TODO explicar**
 
-  Se ha utilizado el método de la interpolación lineal, calculando el valor de la muestra como una combinación lineal entre los valores inmediatamente anterior y posterior al índice deseado, con pesos &alpha y 1 - &alpha, teniendo en cuenta la distancia a los valores anteriores y posteriores.
+  Se ha utilizado el método de la interpolación lineal, calculando el valor de la muestra como una combinación lineal entre los valores inmediatamente anterior y posterior al índice deseado, con pesos α y 1 - α, teniendo en cuenta la distancia a los valores anteriores y posteriores.
 
   Podemos observar a continuación los valores obtenidos de la interpolación lineal a partir de la tabla dada:
   ![seno table](images/seno_table.png)
