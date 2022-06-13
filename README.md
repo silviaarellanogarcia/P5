@@ -134,7 +134,7 @@ mediante búsqueda de los valores en una tabla.
       adsr.start();
       
       f0 = pow(2, ((note - 69.) / 12.)) * 440.;
-      istep = 2 * M_PI * (f0 / SamplingRate);
+      istep = tbl.size() * M_PI * (f0 / SamplingRate);
       index = 0;
       A = vel / 127.; // Amplitud
     }
