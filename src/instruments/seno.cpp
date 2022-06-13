@@ -40,7 +40,7 @@ void Seno::command(long cmd, long note, long vel) {
     adsr.start();
     
     f0 = pow(2, ((note - 69.) / 12.)) * 440.; // Página 14, ecuación 3 del guión de prácticas
-    istep = 2 * M_PI * (f0 / SamplingRate);
+    istep = tbl.size() * (f0 / SamplingRate);
     index = 0;
     A = vel / 127.; // Amplitud
   }
