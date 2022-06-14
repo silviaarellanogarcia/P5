@@ -247,8 +247,8 @@ deberá venir expresado en semitonos.
 - Use el instrumento para generar un vibrato de *parámetros razonables* e incluya una gráfica en la que se
   vea, claramente, la correspondencia entre los valores `N1`, `N2` e `I` con la señal obtenida.
   
-  El valor del parámetro I indica el índice de modulación de la frecuencia moduladora `fm`, de tal forma que si aumentamos su valor, más importante es el efecto de la modulación. 
-  Por otro lado, los valores N1 y N2 afectan al ratio entre la frecuencia portadora `fc` y la de modulación `fm`, de manera que se cumple que ```fc/fm = N1/N2```. Para un valor de I pequeño, se puede apreciar una sinusoide más marcada dentro de la señal, que corresponde a la forma de la modulación.
+  El valor del parámetro `I` indica el índice de modulación de la frecuencia moduladora `fm`, de tal forma que si aumentamos su valor, más importante es el efecto de la modulación. 
+  Por otro lado, los valores `N1` y `N2` afectan al ratio entre la frecuencia portadora `fc` y la de modulación `fm`, de manera que se cumple que ```fc/fm = N1/N2```. Para un valor de `I` pequeño, se puede apreciar una sinusoide más marcada dentro de la señal, que corresponde a la forma de la modulación.
   ![sintesi 1](images/sintesi1.png)
   ![sintesi 2](images/sintesi2.png)
   ![sintesi 3](images/sintesi3.png)
