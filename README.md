@@ -190,9 +190,11 @@ mediante búsqueda de los valores en una tabla.
   Podemos observar a continuación los valores obtenidos de la interpolación lineal a partir de la tabla dada:
   ![seno table](images/seno_table.png)
 
-  A continuación se adjuntan dos gráficas donde se compara la señal resultante de utilizar el instrument `InstrumentDumb` con la resultante de utilizar el instrument `Seno`:
+  A continuación se adjuntan dos gráficas donde se compara la señal resultante de utilizar el instrumento `InstrumentDumb` con la resultante de utilizar el instrument `Seno`:
   ![seno vs dumb all signal](images/dumb_vs_seno.png)
   ![seno vs dumb zoom](images/dumb_vs_seno_zoom.png)
+  ![seno vs dumb zoom 2](images/dumb_vs_seno_zoom2.png)
+  Observamos que la señal generada con el instrumento `InstrumentDumb` no se adapta a la frecuencia deseada. En cambio, la señal generada con `Seno` tiene una frecuencia fundamental que coincide con la deseada, indicada en el fichero `doremi.sco` utilizado en la generación.
 
 - Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código
   del método `command()`.
@@ -267,7 +269,7 @@ Use el programa `synth` para generar canciones a partir de su partitura MIDI. Co
 También puede orquestar otros temas más complejos, como la banda sonora de *Hawaii5-0* o el villacinco de
 John Lennon *Happy Xmas (War Is Over)* (fichero `The_Christmas_Song_Lennon.sco`), o cualquier otra canción
 de su agrado o composición. Se valorará la riqueza instrumental, su modelado y el resultado final.
-- Coloque los ficheros generados, junto a sus ficheros `score`, `instruments` y `efffects`, en el directorio
+- Coloque los ficheros generados, junto a sus ficheros `score`, `instruments` y `effects`, en el directorio
   `work/music`.
 - Indique, a continuación, la orden necesaria para generar cada una de las señales usando los distintos
   ficheros.
