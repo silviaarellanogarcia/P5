@@ -246,10 +246,20 @@ deberá venir expresado en semitonos.
 
 - Use el instrumento para generar un vibrato de *parámetros razonables* e incluya una gráfica en la que se
   vea, claramente, la correspondencia entre los valores `N1`, `N2` e `I` con la señal obtenida.
+  
+  El valor del parámetro I indica el índice de modulación de la frecuencia moduladora `fm`, de tal forma que si aumentamos su valor, más importante es el efecto de la modulación. 
+  Por otro lado, los valores N1 y N2 afectan al ratio entre la frecuencia portadora `fc` y la de modulación `fm`, de manera que se cumple que ```fc/fm = N1/N2```. Para un valor de I pequeño, se puede apreciar una sinusoide más marcada dentro de la señal, que corresponde a la forma de la modulación.
+  ![sintesi 1](images/sintesi1.png)
+  ![sintesi 2](images/sintesi2.png)
+  ![sintesi 3](images/sintesi3.png)
+
 - Use el instrumento para generar un sonido tipo clarinete y otro tipo campana. Tome los parámetros del
   sonido (N1, N2 e I) y de la envolvente ADSR del citado artículo. Con estos sonidos, genere sendas escalas
   diatónicas (fichero `doremi.sco`) y ponga el resultado en los ficheros `work/doremi/clarinete.wav` y
   `work/doremi/campana.work`.
+
+  Al incrementar el valor de I y hacer la frecuencia de modulación de magnitud comparable a la frecuencia central, la percepción ya no es la de un vibrato, sino la de un sonido con un timbre diferente.
+
   * También puede colgar en el directorio work/doremi otras escalas usando sonidos *interesantes*. Por
     ejemplo, violines, pianos, percusiones, espadas láser de la
 	[Guerra de las Galaxias](https://www.starwars.com/), etc.
