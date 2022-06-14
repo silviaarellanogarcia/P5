@@ -257,6 +257,13 @@ deberá venir expresado en semitonos.
   sonido (N1, N2 e I) y de la envolvente ADSR del citado artículo. Con estos sonidos, genere sendas escalas
   diatónicas (fichero `doremi.sco`) y ponga el resultado en los ficheros `work/doremi/clarinete.wav` y
   `work/doremi/campana.work`.
+  
+  Para generar el clarinete los parámetros necesarios son:
+  ADSR_A=0.02; ADSR_D=0.1; ADSR_S=0.4; ADSR_R=0.1; N=40; N1=8; N2=4; I=4;
+
+  Para generar la campana, primero hay que modificar los parámetros ADSR para que se ajusten a la duración especificada en el paper. A continuación, dividiendo la frcuencia carrier y la de modulación sabemos N1 y N2. Los parámetros son:
+  ADSR_A=0.2; ADSR_D=1; ADSR_S=0; ADSR_R=0.3; N=40; N1=5; N2=7; I=4; **CORREGIR, NO SUENA MUY BIEN**
+  
 
   Al incrementar el valor de I y hacer la frecuencia de modulación de magnitud comparable a la frecuencia central, la percepción ya no es la de un vibrato, sino la de un sonido con un timbre diferente.
 
