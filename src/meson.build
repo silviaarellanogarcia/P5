@@ -6,6 +6,7 @@ sources = [
 	'instruments/seno.cpp',
 	'instruments/fictabla.cpp',
 	'instruments/sintesifm.cpp',
+	'instruments/vmetal.cpp',
 	'synth/envelope_adsr.cpp',
 	'synth/midi_score.cpp',
 	'synth/multinote_instr.cpp',

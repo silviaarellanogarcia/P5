@@ -3,6 +3,8 @@
 #include "seno.h"
 #include "sintesifm.h"
 #include "fictabla.h"
+#include "vmetal.h"
+
 
 /*
   For each new instrument:
@@ -26,6 +28,8 @@ namespace upc {
       pInst = (Instrument *) new SintesiFM(parameters);
     } else if(name == "FicTabla"){
       pInst = (Instrument *) new FicTabla(parameters);
+    } else if(name == "Vmetal"){
+      pInst = (Instrument *) new Vmetal(parameters);
     }
     return pInst;
   }

@@ -315,19 +315,21 @@ deberá venir expresado en semitonos.
   diatónicas (fichero `doremi.sco`) y ponga el resultado en los ficheros `work/doremi/clarinete.wav` y
   `work/doremi/campana.wav`.
   
-  Para generar el **clarinete** los parámetros necesarios son:
+  Para generar el [**clarinete**](work/doremi/clarinete.wav) los parámetros necesarios son:
   ADSR_A=0.02; ADSR_D=0.1; ADSR_S=0.4; ADSR_R=0.1; N=40; N1=3; N2=2; I=4;
 
-  Para generar la **campana**, primero hay que modificar los parámetros ADSR para que se ajusten a la duración especificada en el paper, de manera que se corresponda a un instrumento percusivo. A continuación, dividiendo la frecuencia carrier y la de modulación sabemos N1 y N2. Los parámetros son:
+  Para generar la [**campana**](work/doremi/campana.wav), primero hay que modificar los parámetros ADSR para que se ajusten a la duración especificada en el paper, de manera que se corresponda a un instrumento percusivo. A continuación, dividiendo la frecuencia carrier y la de modulación sabemos N1 y N2. Los parámetros son:
   ADSR_A=0.02; ADSR_D=1; ADSR_S=0; ADSR_R=0.7; N=40; N1=5; N2=7; I=10;
 
   * También puede colgar en el directorio work/doremi otras escalas usando sonidos *interesantes*. Por
     ejemplo, violines, pianos, percusiones, espadas láser de la
 	[Guerra de las Galaxias](https://www.starwars.com/), etc.
 
-    A partir del sonido de la campana y el efecto del vibrato, se ha generado el sonido que adquieren los **OVNIS** cuando flotan en los dibujos animados (ovni.wav). Para el vibrato se han usado los parámetros fm=6 e I=10.
+    A partir del sonido de la campana y el efecto del vibrato, se ha generado el sonido que adquieren los [**OVNIS**](work/doremi/ovni.wav) cuando flotan en los dibujos animados. Para el vibrato se han usado los parámetros fm=6 e I=10.
+
+    Para generar los instrumentos de viento metal, se han juntado la SíntesisFM y el efecto de la distorsión en un mismo archivo, cogiendo un Threshold muy bajo para recrear el sonido del metal. A partir de esto, se ha generado el [saxofón](work/doremi/saxofon.wav).También se ha adaptado la forma del ADSR, haciendo que el sonido finalice (casi) de manera abrupta, simulando que el intérprete deja de soplar.
   
-    Otros instrumentos generados son el arpa, el piano, la guitarra, el bajo y la flauta. Los parámetros utilizados pueden consultarse en el fichero [`instruments.orc`](work/doremi/instruments.orc), y tal y como indica el enunciado, los ficheros de audio correspondientes se encuentran en la carpeta doremi.
+    Otros instrumentos generados son el [metalófono](work/doremi/metalofono.wav), el [piano]((work/doremi/piano.wav)), la [guitarra](work/doremi/guitarra.wav), el [bajo](work/doremi/bajo.wav) y la [flauta]((work/doremi/flauta.wav)). Los parámetros utilizados pueden consultarse en el fichero [`instruments.orc`](work/doremi/instruments.orc), y tal y como indica el enunciado, los ficheros de audio correspondientes se encuentran en la carpeta doremi.
 
 ### Orquestación usando el programa synth.
 
@@ -344,11 +346,11 @@ Use el programa `synth` para generar canciones a partir de su partitura MIDI. Co
   Hemos generado un dueto con la guitarra como instrumento principal y el piano como acompañamiento. Para que quede más claro, hemos generado un .orc exclusivo para esta versión.
 
   ```bash
-  synth ./music/Toy_guitarra_piano.orc ../samples/ToyStory_A_Friend_in_me.sco Toy_guitarra_piano.wav
+  synth --gain=0.3 ./music/Toy_guitarra_piano.orc ../samples/ToyStory_A_Friend_in_me.sco algo1.wav
   ```
   Resultado: [Toy_guitarra_piano.wav](work/music/Toy_guitarra_piano.wav)
 
-  Hemos generado un dueto con la guitarra como instrumento principal y el bajo como acompañamiento. Para que quede más claro, hemos generado un .orc exclusivo para esta versión.
+  Hemos generado un dueto con la guitarra como instrumento principal y el bajo como acompañamiento. Para que quede más claro, hemos generado un .orc exclusivo para esta versión. No obstante, en esta versión se oyen unos chasquidos debido a que la señal satura, pero si al cambiar el gain, el bajo a penas se escucha (en este caso).
 
   ```bash
   synth ./music/Toy_guitarra_bajo.orc ../samples/ToyStory_A_Friend_in_me.sco Toy_guitarra_bajo.wav
@@ -369,3 +371,30 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
   synth music/Titanic.orc ../samples/Titanic.sco Titanic.wav
   ```
   Resultado: [Titanic.wav](work/music/Titanic.wav)
+
+  **LA PANTERA ROSA**
+  Esta canción consta de 6 instrumentos. El saxofón como principal, la guitarra, el piano, el clarinete, el bajo y el bombo.
+  ```bash
+  synth music/La_pantera_rosa.orc ../samples/La_pantera_rosa.sco La_pantera_rosa.wav
+  ```
+  Resultado: [La_pantera_rosa.wav](work/music/La_pantera_rosa.wav)
+
+  **YESTERDAY**
+  Esta versión de la famosa canción de los Beatles está compuesta por 4 instrumentos: el piano, el clarinete, el bajo y el bombo.
+  ```bash
+  synth music/Yesterday.orc ../samples/Yesterday.sco Yesterday.wav
+  ```
+  Resultado: [Yesterday.wav](work/music/Yesterday.wav)
+
+  **CRAB RAVE**
+  Esta canción se convirtió en un meme debido a su gracioso (y bien reaalizado) [videoclip](https://www.youtube.com/watch?v=LDU_Txk06tM). La canción original es de género electrónico, pero el archivo MIDI ha sido extraido a partir de una cover, por lo que el resultado no es exactamente el mismo.
+
+  ```bash
+  synth music/Crab.orc ../samples/Crab-Rave.sco Crab.wav
+  ```
+  Resultado: [Crab.wav](work/music/Crab.wav)
+   
+
+*NOTA:* Todas las gráficas que no han sido generadas con WaveSurfer, se han dibujado con GoogleColab. El archivo con el código resultante puede consultarse aquí.
+
+*NOTA 2:* No sería indispensable generar un .orc para cada canción, pero queda más claro para después ajustar los parámetros y para exponerlo en la memoria.
