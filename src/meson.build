@@ -4,6 +4,7 @@ sources = [
 	'instruments/instrument.cpp',
 	'instruments/instrument_dumb.cpp',
 	'instruments/seno.cpp',
+	'instruments/fictabla.cpp',
 	'instruments/sintesifm.cpp',
 	'synth/envelope_adsr.cpp',
 	'synth/midi_score.cpp',

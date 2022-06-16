@@ -194,10 +194,52 @@ mediante búsqueda de los valores en una tabla.
   ![seno vs dumb all signal](images/dumb_vs_seno.png)
   ![seno vs dumb zoom](images/dumb_vs_seno_zoom.png)
   ![seno vs dumb zoom 2](images/dumb_vs_seno_zoom2.png)
-  Observamos que la señal generada con el instrumento `InstrumentDumb` no se adapta a la frecuencia deseada. En cambio, la señal generada con `Seno` tiene una frecuencia fundamental que coincide con la deseada, indicada en el fichero `doremi.sco` utilizado en la generación.
+  Observamos que la señal generada con el instrumento `InstrumentDumb` no se adapta a la frecuencia deseada. En cambio, la señal generada con `Seno` tiene una frecuencia fundamental que coincide con la deseada, indicada en el fichero [`doremi.sco`](work/doremi.sco) utilizado en la generación.
+
+  Ficheros utilizados:
+  - [seno.orc](work/basics/seno.orc)
+  - [dumb.orc](work/basics/dumb.orc)
+  - [doremi.sco](work/doremi.sco)
+  
+  Ficheros resultantes:
+  - [seno.wav](work/basics/seno.wav)
+  - [dumb.wav](work/basics/dumb.wav)
 
 - Si ha implementado la síntesis por tabla almacenada en fichero externo, incluya a continuación el código
   del método `command()`.
+
+  Este método se ha implementado de la misma forma que en el caso del instrumento `Seno`. Sin embargo, se ha cambiado el constructor por el siguiente:
+
+  ```
+  FicTabla::FicTabla(const std::string &param) 
+  : adsr(SamplingRate, param) {
+    bActive = false;
+    x.resize(BSIZE);
+
+    KeyValue kv(param);
+    std::string file_name;
+    static string kv_null;
+    if ((file_name = kv("file")) == kv_null) {
+      cerr << "Error: no se ha encontrado el campo con el fichero de la señal para un instrumento FicTabla" << endl;
+      throw -1;
+    }
+
+    unsigned int fm;
+    if (readwav_mono(file_name, fm, tbl) < 0) {
+      cerr << "Error: no se puede leer el fichero " << file_name << " para un instrumento FicTabla" << endl;
+      throw -1;
+    }
+  }
+  ```
+
+  Para comprobar el correcto funcionamiento de la síntesis por tabla almacenada en fichero externo, se ha creado una señal `triangle.wav` que contiene un solo periodo y con ella hemos obtenido la señal `fictabla.wav`.
+  
+  A continuación una gráfica que compara la señal generada [`fictabla.wav`](work/fictabla/fictabla.wav) con la generada usando el instrumento `Seno`.
+  ![seno vs triangle](images/seno_vs_triangle.png)
+
+  Se ha utilizado:
+  - [fictabla.orc](work/fictabla/fictabla.orc)
+  - [doremi.sco](work/doremi.sco)
 
 ### Efectos sonoros.
 
@@ -231,6 +273,12 @@ mediante búsqueda de los valores en una tabla.
   ```bash
   synth -e effects.orc  instrumento.orc partitura.sco name_out.wav
   ```
+
+  El fichero `effects.orc` se encuentra [aquí](work/effects/effects.orc), junto con los resultados:
+  - [tremolo.wav](work/effects/tremolo.wav)
+  - [vibrato.wav](work/effects/vibrato.wav)
+  - [distorsion.wav](work/effects/distorsion.wav)
+
   Se ha generado el archivo distorsion.wav, donde se aplica el efecto en la 3ª, 4ª y 5ª nota. A continuación se muestra el efecto de la distorsión con un umbral de 0.5, hecho que provoca una onda con los extremos cuadrados. A mayor umbral, más acusado será el efecto.
   <img src="images/no_distorsion_vs_distorsion.png" width="640" align="center"> </br></br>
   <img src="images/distorsion.png" width="640" align="center"> </br>
@@ -253,12 +301,19 @@ deberá venir expresado en semitonos.
   ![sintesi 2](images/sintesi2.png)
   ![sintesi 3](images/sintesi3.png)
 
+  Se ha utilizado:
+  - [sintesifm.orc](work/sintesifm/sintesifm.orc)
+  - [doremi.sco](work/doremi.sco)
+  
+  Resultado:
+  - [sintesifm.wav](work/sintesifm/sintesifm.wav)
+
   Al incrementar el valor de I y hacer la frecuencia de modulación de magnitud comparable a la frecuencia central, la percepción ya no es la de un vibrato, sino la de un sonido con un timbre diferente.
 
 - Use el instrumento para generar un sonido tipo clarinete y otro tipo campana. Tome los parámetros del
   sonido (N1, N2 e I) y de la envolvente ADSR del citado artículo. Con estos sonidos, genere sendas escalas
   diatónicas (fichero `doremi.sco`) y ponga el resultado en los ficheros `work/doremi/clarinete.wav` y
-  `work/doremi/campana.work`.
+  `work/doremi/campana.wav`.
   
   Para generar el **clarinete** los parámetros necesarios son:
   ADSR_A=0.02; ADSR_D=0.1; ADSR_S=0.4; ADSR_R=0.1; N=40; N1=3; N2=2; I=4;
@@ -272,7 +327,7 @@ deberá venir expresado en semitonos.
 
     A partir del sonido de la campana y el efecto del vibrato, se ha generado el sonido que adquieren los **OVNIS** cuando flotan en los dibujos animados (ovni.wav). Para el vibrato se han usado los parámetros fm=6 e I=10.
   
-    Otros instrumentos generados son el arpa, el piano, la guitarra, el bajo y la flauta. Los parámetros utilizados pueden consultarse en el fichero instruments.orc, y tal y como indica el enunciado, los ficheros de audio correspondientes se encuentran en la carpeta doremi.
+    Otros instrumentos generados son el arpa, el piano, la guitarra, el bajo y la flauta. Los parámetros utilizados pueden consultarse en el fichero [`instruments.orc`](work/doremi/instruments.orc), y tal y como indica el enunciado, los ficheros de audio correspondientes se encuentran en la carpeta doremi.
 
 ### Orquestación usando el programa synth.
 
@@ -291,12 +346,15 @@ Use el programa `synth` para generar canciones a partir de su partitura MIDI. Co
   ```bash
   synth ./music/Toy_guitarra_piano.orc ../samples/ToyStory_A_Friend_in_me.sco Toy_guitarra_piano.wav
   ```
+  Resultado: [Toy_guitarra_piano.wav](work/music/Toy_guitarra_piano.wav)
 
   Hemos generado un dueto con la guitarra como instrumento principal y el bajo como acompañamiento. Para que quede más claro, hemos generado un .orc exclusivo para esta versión.
 
   ```bash
   synth ./music/Toy_guitarra_bajo.orc ../samples/ToyStory_A_Friend_in_me.sco Toy_guitarra_bajo.wav
   ```
+  Resultado: [Toy_guitarra_bajo.wav](work/music/Toy_guitarra_bajo.wav)
+
 También puede orquestar otros temas más complejos, como la banda sonora de *Hawaii5-0* o el villacinco de
 John Lennon *Happy Xmas (War Is Over)* (fichero `The_Christmas_Song_Lennon.sco`), o cualquier otra canción
 de su agrado o composición. Se valorará la riqueza instrumental, su modelado y el resultado final.
@@ -308,5 +366,6 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
   **TITANIC**
   Hemos recreado una versión simplificada del tema principal de la mítica BSO de Titanic. Para ello hemos utilizado una flauta, una guitarra, un piano y un bajo.
   ```bash
-  synth music/Titanic.orc ../samples/Titanic.sco algo1.wav
+  synth music/Titanic.orc ../samples/Titanic.sco Titanic.wav
   ```
+  Resultado: [Titanic.wav](work/music/Titanic.wav)
