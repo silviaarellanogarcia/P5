@@ -395,6 +395,6 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
   Resultado: [Crab.wav](work/music/Crab.wav)
    
 
-*NOTA:* Todas las gráficas que no han sido generadas con WaveSurfer, se han dibujado con GoogleColab. El archivo con el código resultante puede consultarse aquí.
+*NOTA:* Todas las gráficas que no han sido generadas con WaveSurfer, se han dibujado con GoogleColab. El archivo con el código resultante puede consultarse [aquí](graphs_%26_stuff.pdf).
 
 *NOTA 2:* No sería indispensable generar un .orc para cada canción, pero queda más claro para después ajustar los parámetros y para exponerlo en la memoria.
