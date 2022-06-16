@@ -253,23 +253,26 @@ deberá venir expresado en semitonos.
   ![sintesi 2](images/sintesi2.png)
   ![sintesi 3](images/sintesi3.png)
 
+  Al incrementar el valor de I y hacer la frecuencia de modulación de magnitud comparable a la frecuencia central, la percepción ya no es la de un vibrato, sino la de un sonido con un timbre diferente.
+
 - Use el instrumento para generar un sonido tipo clarinete y otro tipo campana. Tome los parámetros del
   sonido (N1, N2 e I) y de la envolvente ADSR del citado artículo. Con estos sonidos, genere sendas escalas
   diatónicas (fichero `doremi.sco`) y ponga el resultado en los ficheros `work/doremi/clarinete.wav` y
   `work/doremi/campana.work`.
   
-  Para generar el clarinete los parámetros necesarios son:
-  ADSR_A=0.02; ADSR_D=0.1; ADSR_S=0.4; ADSR_R=0.1; N=40; N1=8; N2=4; I=4;
+  Para generar el **clarinete** los parámetros necesarios son:
+  ADSR_A=0.02; ADSR_D=0.1; ADSR_S=0.4; ADSR_R=0.1; N=40; N1=3; N2=2; I=4;
 
-  Para generar la campana, primero hay que modificar los parámetros ADSR para que se ajusten a la duración especificada en el paper. A continuación, dividiendo la frcuencia carrier y la de modulación sabemos N1 y N2. Los parámetros son:
-  ADSR_A=0.2; ADSR_D=1; ADSR_S=0; ADSR_R=0.3; N=40; N1=5; N2=7; I=4; **CORREGIR, NO SUENA MUY BIEN**
-  
-
-  Al incrementar el valor de I y hacer la frecuencia de modulación de magnitud comparable a la frecuencia central, la percepción ya no es la de un vibrato, sino la de un sonido con un timbre diferente.
+  Para generar la **campana**, primero hay que modificar los parámetros ADSR para que se ajusten a la duración especificada en el paper, de manera que se corresponda a un instrumento percusivo. A continuación, dividiendo la frecuencia carrier y la de modulación sabemos N1 y N2. Los parámetros son:
+  ADSR_A=0.02; ADSR_D=1; ADSR_S=0; ADSR_R=0.7; N=40; N1=5; N2=7; I=10;
 
   * También puede colgar en el directorio work/doremi otras escalas usando sonidos *interesantes*. Por
     ejemplo, violines, pianos, percusiones, espadas láser de la
 	[Guerra de las Galaxias](https://www.starwars.com/), etc.
+
+    A partir del sonido de la campana y el efecto del vibrato, se ha generado el sonido que adquieren los **OVNIS** cuando flotan en los dibujos animados (ovni.wav). Para el vibrato se han usado los parámetros fm=6 e I=10.
+  
+    Otros instrumentos generados son el arpa, el piano, la guitarra, el bajo y la flauta. Los parámetros utilizados pueden consultarse en el fichero instruments.orc, y tal y como indica el enunciado, los ficheros de audio correspondientes se encuentran en la carpeta doremi.
 
 ### Orquestación usando el programa synth.
 
@@ -283,6 +286,17 @@ Use el programa `synth` para generar canciones a partir de su partitura MIDI. Co
 - Indique, a continuación, la orden necesaria para generar la señal (suponiendo que todos los archivos
   necesarios están en directorio indicado).
 
+  Hemos generado un dueto con la guitarra como instrumento principal y el piano como acompañamiento. Para que quede más claro, hemos generado un .orc exclusivo para esta versión.
+
+  ```bash
+  synth ./music/Toy_guitarra_piano.orc ../samples/ToyStory_A_Friend_in_me.sco Toy_guitarra_piano.wav
+  ```
+
+  Hemos generado un dueto con la guitarra como instrumento principal y el bajo como acompañamiento. Para que quede más claro, hemos generado un .orc exclusivo para esta versión.
+
+  ```bash
+  synth ./music/Toy_guitarra_bajo.orc ../samples/ToyStory_A_Friend_in_me.sco Toy_guitarra_bajo.wav
+  ```
 También puede orquestar otros temas más complejos, como la banda sonora de *Hawaii5-0* o el villacinco de
 John Lennon *Happy Xmas (War Is Over)* (fichero `The_Christmas_Song_Lennon.sco`), o cualquier otra canción
 de su agrado o composición. Se valorará la riqueza instrumental, su modelado y el resultado final.
@@ -290,3 +304,9 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
   `work/music`.
 - Indique, a continuación, la orden necesaria para generar cada una de las señales usando los distintos
   ficheros.
+
+  **TITANIC**
+  Hemos recreado una versión simplificada del tema principal de la mítica BSO de Titanic. Para ello hemos utilizado una flauta, una guitarra, un piano y un bajo.
+  ```bash
+  synth music/Titanic.orc ../samples/Titanic.sco algo1.wav
+  ```

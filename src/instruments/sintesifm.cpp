@@ -33,14 +33,6 @@ SintesiFM::SintesiFM(const std::string &param)
     I = 1; //default value
 
   I = 1. - pow(2, -I / 12.); // Pasar I de semitonos a lineal
-
-  //Create a tbl with one period of a sinusoidal wave
-  tbl.resize(N);
-  float phase = 0, step = 2 * M_PI /(float) N;
-  for (int i=0; i < N ; ++i) {
-    tbl[i] = sin(phase);
-    phase += step;
-  }
 }
 
 
@@ -51,7 +43,6 @@ void SintesiFM::command(long cmd, long note, long vel) {
     
     fc = (pow(2, ((note - 69.) / 12.)) * 440.) / SamplingRate; // Página 14, ecuación 3 del guión de prácticas
     fm = (N2/N1) * fc;
-    cout << fc *SamplingRate << '\t' << fm*SamplingRate << endl;
     step1 = 2 * M_PI * fm;
     step2 = 2 * M_PI * fc;
     phase1 = 0;
