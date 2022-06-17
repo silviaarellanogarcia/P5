@@ -369,7 +369,7 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
 
   Hemos recreado una versión simplificada del tema principal de la mítica BSO de Titanic. Para ello hemos utilizado una flauta, una guitarra, un piano y un bajo.
   ```bash
-  synth music/Titanic.orc ../samples/Titanic.sco Titanic.wav
+  synth --gain=0.1 music/Titanic.orc ../samples/Titanic.sco Titanic.wav
   ```
   Resultado: [Titanic.wav](work/music/Titanic.wav)
 
@@ -377,7 +377,7 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
 
   Esta canción consta de 6 instrumentos. El saxofón como principal, la guitarra, el piano, el clarinete, el bajo y el bombo.
   ```bash
-  synth music/La_pantera_rosa.orc ../samples/La_pantera_rosa.sco La_pantera_rosa.wav
+  synth --gain=0.1 music/La_pantera_rosa.orc ../samples/La_pantera_rosa.sco La_pantera_rosa.wav
   ```
   Resultado: [La_pantera_rosa.wav](work/music/La_pantera_rosa.wav)
 
@@ -385,7 +385,7 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
 
   Esta versión de la famosa canción de los Beatles está compuesta por 4 instrumentos: el piano, el clarinete, el bajo y el bombo.
   ```bash
-  synth music/Yesterday.orc ../samples/Yesterday.sco Yesterday.wav
+  synth --gain=0.1 music/Yesterday.orc ../samples/Yesterday.sco Yesterday.wav
   ```
   Resultado: [Yesterday.wav](work/music/Yesterday.wav)
 
@@ -393,7 +393,7 @@ de su agrado o composición. Se valorará la riqueza instrumental, su modelado y
   Esta canción se convirtió en un meme debido a su gracioso (y bien reaalizado) [videoclip](https://www.youtube.com/watch?v=LDU_Txk06tM). La canción original es de género electrónico, pero el archivo MIDI ha sido extraido a partir de una cover, por lo que el resultado no es exactamente el mismo.
 
   ```bash
-  synth music/Crab.orc ../samples/Crab-Rave.sco Crab.wav
+  synth --gain=0.1 music/Crab.orc ../samples/Crab-Rave.sco Crab.wav
   ```
   Resultado: [Crab.wav](work/music/Crab.wav)
    
