@@ -329,7 +329,7 @@ deberá venir expresado en semitonos.
 
     Para generar los instrumentos de viento metal, se han juntado la SíntesisFM y el efecto de la distorsión en un mismo archivo, cogiendo un Threshold muy bajo para recrear el sonido del metal. A partir de esto, se ha generado el [saxofón](work/doremi/saxofon.wav). También se ha adaptado la forma del ADSR, haciendo que el sonido finalice (casi) de manera abrupta, simulando que el intérprete deja de soplar.
   
-    Otros instrumentos generados son el [metalófono](work/doremi/metalofono.wav), el [piano](work/doremi/piano.wav), la [guitarra](work/doremi/guitarra.wav), el [bajo](work/doremi/bajo.wav), la [flauta](work/doremi/flauta.wav) y el [bombo](work/doremi/bombo.wav). Los parámetros utilizados pueden consultarse en el fichero [`instruments.orc`](work/doremi/instruments.orc), y tal y como indica el enunciado, los ficheros de audio correspondientes se encuentran en la carpeta doremi.
+    Otros instrumentos generados son el [metalófono](work/doremi/metalofono.wav), el [piano](work/doremi/piano.wav), la [guitarra](work/doremi/guitarra.wav), el [bajo](work/doremi/bajo.wav), la [flauta](work/doremi/flauta.wav) y el [bombo](work/doremi/bombo.wav). Los parámetros utilizados pueden consultarse en el fichero [`instruments.orc`](work/instruments.orc), y tal y como indica el enunciado, los ficheros de audio correspondientes se encuentran en la carpeta doremi.
 
 ### Orquestación usando el programa synth.
 
